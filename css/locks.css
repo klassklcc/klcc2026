@@ -1,0 +1,40 @@
+body {
+  background: #050505;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  transition: transform 1s ease, opacity 1s ease;
+}
+
+.lock-row {
+  display: flex;
+  gap: 30px;
+}
+
+.lock-wrapper {
+  width: 120px;
+  opacity: 0.35;
+  transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+.lock-wrapper.unlocked {
+  opacity: 0.6;
+}
+
+.lock-wrapper.current {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+.lock-wrapper.unlocking {
+  animation: unlock 0.8s ease forwards;
+}
+
+@keyframes unlock {
+  0% { transform: scale(1.1) rotate(0deg); }
+  40% { transform: scale(1.2) rotate(-6deg); }
+  70% { transform: scale(1.2) rotate(6deg); }
+  100% { transform: scale(1.15); }
+}
