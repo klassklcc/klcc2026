@@ -34,12 +34,15 @@ setTimeout(() => {
 }, 4200);
 
 setTimeout(() => {
+}, 5200);
+
+setTimeout(() => {
   overlay.classList.add("fade");
-  page.classList.add("show");
 }, 5600);
 
 setTimeout(() => {
   overlay.remove();
+  page.classList.add("show");
   document.body.style.overflow = "auto";
-}, 6600);
+}, 6400);
 </script>
