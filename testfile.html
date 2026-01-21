@@ -22,11 +22,6 @@ body {
   justify-content: center;
   align-items: center;
   z-index: 9999;
-  transition: opacity 0.8s ease;
-}
-
-.overlay.fade {
-  opacity: 0;
 }
 
 /* ===== TRACK ===== */
@@ -45,17 +40,16 @@ body {
 }
 
 .lock.unlocked {
-  opacity: 0.6;
+  opacity: 0.4;
 }
 
 .lock.current {
   opacity: 1;
 }
 
-/* ===== ZOOM ===== */
-.overlay.zoom {
+.track.zoom {
   transform: scale(3);
-  transition: transform 0.1s ease;
+  transition: transform 1.6s ease;
 }
 
 svg {
@@ -63,7 +57,6 @@ svg {
   display: block;
 }
 
-/* ===== PAGE ===== */
 .page {
   opacity: 0;
   padding: 80px;
@@ -79,7 +72,6 @@ svg {
 
 <body>
 
-<!-- INTRO OVERLAY -->
 <div class="overlay" id="overlay">
   <div class="track" id="track">
 
@@ -87,14 +79,14 @@ svg {
     <div class="lock" data-index="0">
       <svg viewBox="0 0 120 160">
         <path d="M30 60 V38 C30 8 90 8 90 38 V60"
-              fill="none" stroke="#555" stroke-width="12"
+              fill="none" stroke="#666" stroke-width="12"
               stroke-linecap="round"/>
         <rect x="18" y="60" width="84" height="86" rx="16"
-              fill="#0a0a0a" stroke="#555" stroke-width="4"/>
+              fill="#0a0a0a" stroke="#666" stroke-width="4"/>
         <circle cx="60" cy="102" r="20"
                 fill="#000" stroke="#666" stroke-width="3"/>
         <text x="60" y="110" text-anchor="middle"
-              font-size="20" fill="#888" font-weight="bold">1</text>
+              font-size="20" fill="#777" font-weight="bold">1</text>
       </svg>
     </div>
 
@@ -102,14 +94,14 @@ svg {
     <div class="lock" data-index="1">
       <svg viewBox="0 0 120 160">
         <path d="M30 60 V38 C30 8 90 8 90 38 V60"
-              fill="none" stroke="#555" stroke-width="12"
+              fill="none" stroke="#666" stroke-width="12"
               stroke-linecap="round"/>
         <rect x="18" y="60" width="84" height="86" rx="16"
-              fill="#0a0a0a" stroke="#555" stroke-width="4"/>
+              fill="#0a0a0a" stroke="#666" stroke-width="4"/>
         <circle cx="60" cy="102" r="20"
                 fill="#000" stroke="#666" stroke-width="3"/>
         <text x="60" y="110" text-anchor="middle"
-              font-size="20" fill="#666" font-weight="bold">2</text>
+              font-size="20" fill="#777" font-weight="bold">2</text>
       </svg>
     </div>
 
@@ -117,14 +109,14 @@ svg {
     <div class="lock current" id="current" data-index="2">
       <svg viewBox="0 0 120 160">
         <path d="M30 60 V38 C30 8 90 8 90 38 V60"
-              fill="none" stroke="#555" stroke-width="12"
+              fill="none" stroke="#666" stroke-width="12"
               stroke-linecap="round"/>
         <rect x="18" y="60" width="84" height="86" rx="16"
-              fill="#0a0a0a" stroke="#555" stroke-width="4"/>
+              fill="#0a0a0a" stroke="#666" stroke-width="4"/>
         <circle cx="60" cy="102" r="20"
                 fill="#000" stroke="#666" stroke-width="3"/>
         <text x="60" y="110" text-anchor="middle"
-              font-size="20" fill="#666" font-weight="bold">3</text>
+              font-size="20" fill="#777" font-weight="bold">3</text>
       </svg>
     </div>
 
@@ -132,21 +124,20 @@ svg {
     <div class="lock" data-index="3">
       <svg viewBox="0 0 120 160">
         <path d="M30 60 V38 C30 8 90 8 90 38 V60"
-              fill="none" stroke="#444" stroke-width="12"
+              fill="none" stroke="#666" stroke-width="12"
               stroke-linecap="round"/>
         <rect x="18" y="60" width="84" height="86" rx="16"
-              fill="#0a0a0a" stroke="#444" stroke-width="4"/>
+              fill="#0a0a0a" stroke="#666" stroke-width="4"/>
         <circle cx="60" cy="102" r="20"
-                fill="#000" stroke="#555" stroke-width="3"/>
+                fill="#000" stroke="#666" stroke-width="3"/>
         <text x="60" y="110" text-anchor="middle"
-              font-size="20" fill="#666" font-weight="bold">4</text>
+              font-size="20" fill="#777" font-weight="bold">4</text>
       </svg>
     </div>
 
   </div>
 </div>
 
-<!-- REAL PAGE -->
 <div class="page" id="page">
   <h1>Round 3</h1>
   <p>Your puzzle content starts here.</p>
@@ -154,45 +145,3 @@ svg {
 
 <script>
 const track = document.getElementById("track");
-const overlay = document.getElementById("overlay");
-const page = document.getElementById("page");
-const current = document.getElementById("current");
-const locks = document.querySelectorAll(".lock");
-
-/* ---- CENTER CURRENT LOCK ---- */
-const offset =
-  window.innerWidth / 2 -
-  current.offsetLeft -
-  current.offsetWidth / 2;
-
-requestAnimationFrame(() => {
-  track.style.transform = `translateX(${offset}px)`;
-});
-
-/* ---- UNLOCK PREVIOUS LOCKS (SEQUENCE) ---- */
-locks.forEach((lock, i) => {
-  if (i < current.dataset.index) {
-    setTimeout(() => {
-      lock.classList.add("unlocked");
-    }, 1400 + i * 300);
-  }
-});
-
-/* ---- ZOOM + TRANSITION ---- */
-setTimeout(() => {
-  overlay.classList.add("zoom");
-}, 4200);
-
-setTimeout(() => {
-  overlay.classList.add("fade");
-  page.classList.add("show");
-}, 5600);
-
-setTimeout(() => {
-  overlay.remove();
-  document.body.style.overflow = "auto";
-}, 6600);
-</script>
-
-</body>
-</html>
