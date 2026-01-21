@@ -5,7 +5,6 @@
 <title>Escape Intro</title>
 
 <style>
-/* ===== BASE ===== */
 body {
   margin: 0;
   background: black;
@@ -13,7 +12,6 @@ body {
   overflow: hidden;
 }
 
-/* ===== OVERLAY ===== */
 .overlay {
   position: fixed;
   inset: 0;
@@ -23,8 +21,12 @@ body {
   align-items: center;
   z-index: 9999;
 }
+.overlay.fade {
+  opacity: 0;
+  transition: opacity 0.8s ease;
+}
 
-/* ===== TRACK ===== */
+
 .track {
   display: flex;
   gap: 80px;
@@ -32,7 +34,6 @@ body {
   transition: transform 3.2s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-/* ===== LOCK ===== */
 .lock {
   width: 170px;
   opacity: 0.25;
@@ -47,10 +48,14 @@ body {
   opacity: 1;
 }
 
-.track.zoom {
-  transform: scale(3);
-  transition: transform 1.6s ease;
+.overlay {
+  transition: opacity 0.8s ease, transform 1.6s ease;
 }
+
+.overlay.zoom {
+  transform: scale(3);
+}
+
 
 svg {
   width: 100%;
