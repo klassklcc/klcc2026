@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>KL-Coding Cup</title>
+    <title>KL Coding Cup</title>
     <meta charset="utf-8" />
     <meta
       name="viewport"
@@ -54,7 +54,7 @@
             </li>
 
             <li>
-              <h3><a href="past_content.html">Murder Mystery Round</a></h3>
+              <h3><a href="past_content.html">Escape Room Round</a></h3>
             </li>
             <li>
               
@@ -64,49 +64,46 @@
             </li>
           </ul>
           <h3 style="padding-top: 100%">
-            <a href="https://github.com/asian-mario">Made By: Rangga & Aniish</a>
+            <a href="https://github.com/asian-mario">Made By: Rangga & Awab4</a>
           </h3>
         </nav>
       </aside>
       <div id="colorlib-main">
         <section class="ftco-section ftco-no-pt ftco-no-pb">
             <div style="padding-left: 5rem; padding-right: 5rem; padding-top: 2rem; padding-bottom: 0.5rem;">
-                <h1 class="colorlib-heading">Missing Evidence</h1>
+                <h1 class="colorlib-heading">Decryption key</h1>
                 <p style="color: #fff;">
-                  The evidence locker is in disarray, with items scattered everywhere. Somewhere in the chaos are two items that, when combined, unlock a critical clue. Quickly find the two items whose combined weight equals the target value! (Please note that you have to take the first solution combination which comes up.)  
+                  The leader of the cybersecurity teams has invited you to an interview. He gives you an encrypted list of integers. He wants you to extract the hidden message. Can you do it?  
                   <br></br>
                   Explanation
                   Input is denoted by:
                   <ul style="color: #fff;">
-                    <li><p><code>nums</code>: A list of integers representing item weights </p></li>
-                    <li><p><code>target</code>: An integer representing the combined weight to match.  
+                    <li><p><code>nums</code>: A list of integers representing the encrypted message </p></li>
                     </p></li>
                   </ul>
                   <br>
-                  <p style="color: #fff">Your task is to return the indices of the two numbers in <code>nums</code> that add up to <code>target</code>. You may assume there is exactly one solution, and the same element cannot be used twice.  
-                    For example, given <code>nums = [2, 7, 11, 15]</code> and <code>target = 9</code>, the output would be <code>[0, 1]</code> because <code>nums[0] + nums[1] = 2 + 7 = 9</code>.</p>
+                  <p style="color: #fff">Your task is to take the numbers, multiply them all together, then go through the multiplied number, converting every adjacent pair into ascii characters.</p>
                     <br>
                     <h3 style="color: #FFF">Example Case</h3>
                     <code>
-                      Input: nums = [2, 7, 11, 15], target = 9 <br> 
-                      Explanation: nums[0] + nums[1] = 2 + 7 = 9  <br> 
-                      Expected Output: [0, 1]
+                      Input: nums = [13, 6]<br> 
+                      Output: N <br>
+                      Explanation: nums[0] * nums[1] = 78, 78 = N  <br> 
                     </code>
                     <br></br>
                     <h3 style="color: #FFF">Case 1</h3>
                     <code>
-                      Input: Input: nums = [230, 863, 916, 585, 981, 404, 316, 880, 88, 12], target = 1796
+                      Input: Input: nums = [4, 2, 6, 7, 11, 22883], Output: TEST
                     </code>
                     <br></br>
                     <h3 style="color: #FFF">Case 2</h3>
                     <code>
-                      Input: nums = [1023, 120, 459, 785, 400, 152, 319, 631, 540, 332], target = 1355 
+                      Input: nums = [2, 3, 3, 7, 11, 13, 37, 101, 9901], Output: KLCODING2026 
                     </code>
                     <br></br> 
                     <h3 style="color: #FFF">Case 3</h3>
                     <code>
-                      Find the first two index combinations that fullfil the target. The input is too long, the file is space seperated! Download it from <a href="qData/q1/two_sum_long_input.txt" download="q1">here</a> <br>
-                      Target: 578
+                      Extract the hidden string. The input is too long, the file is space seperated! Download it from <a href="qData/q1/two_sum_long_input.txt" download="q1">here</a> <br>
                     </code>
                     
                 </p>
