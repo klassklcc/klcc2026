@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>KL-Coding Cup</title>
+    <title>KL Coding Cup</title>
     <meta charset="utf-8" />
     <meta
       name="viewport"
@@ -35,7 +35,7 @@
       <a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
       <aside id="colorlib-aside" role="complementary" class="js-fullheight">
         <h1 id="colorlib-logo" class="mb-4 mb-md-5">
-          <a href="index.html" style="background-color: white">KL-CC</a>
+          <a href="index.html" style="background-color: white">KLCC</a>
         </h1>
         <nav id="colorlib-main-menu" role="navigation">
           <ul>
@@ -54,7 +54,7 @@
             </li>
 
             <li>
-              <h3><a href="past_content.html">Murder Mystery Round</a></h3>
+              <h3><a href="past_content.html">Escape Room Round</a></h3>
             </li>
             <li>
               
@@ -64,40 +64,40 @@
             </li>
           </ul>
           <h3 style="padding-top: 100%">
-            <a href="https://github.com/asian-mario">Made By: Rangga & Aniish</a>
+            <a href="https://github.com/asian-mario">Made By: Rangga & Awab</a>
           </h3>
         </nav>
       </aside>
       <div id="colorlib-main">
         <section class="ftco-section ftco-no-pt ftco-no-pb">
             <div style="padding-left: 5rem; padding-right: 5rem; padding-top: 2rem; padding-bottom: 0.5rem;">
-                <h1 class="colorlib-heading">Suspect Code</h1>
+                <h1 class="colorlib-heading">Triple Sum</h1>
 <p style="color: #fff;">
-  A numeric code found at the crime scene might contain the suspect’s hideout. But it’s only valid if it reads the same forward and backward. Is the number a palindrome?
+  Your task is to find all triples in an array that add to 1000
     <br></br>
     <b>Explanation</b>
     <br>
     Input is denoted by:
     <ul style="color: #fff;">
-        <li><p><code>x</code>: an integer which could read forwards or backwards</p></li>
+        <li><p><code>X</code>: an array of integers</p></li>
     </ul>
 
     <br>
     <h3 style="color: #FFF">Example Case</h3>
     <code>
-        Input: s = 121 <br> 
-        Explanation: 121 reads the same backward as forward.  <br>
-        Expected Output: true
+        Input: X = [-200, 50, 150, 300, 450, 700, 750] <br> 
+        Output: (-200,450,750)<br>
+        Explanation: -200 + 450 + 750 = 1000
     </code>
     <br></br>
     <h3 style="color: #FFF">Case 1</h3>
     <code>
-        Input: s = 123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890098765432109876543210987654321098765432109876543210987654321098765432109876543210987654321098765432109876543210987654321098765432109876543210987654321098765432109876543210987654321098765432109876543210987654321098765432109876543210987654321098765432109876543210987654321098765432109876543210987654321 <br>
+        Input: X = [5, 12, 18, 25, 33, 41, 47, 52, 60, 64, 75, 82, 95, 101, 118, 125, 132, 147, 165, 175, 188, 205, 215, 225, 240, 255, 265, 275, 288, 305, 315, 325, 340, 355, 365, 388, 415, 438, 465, 488, 515, 525, 540, 565, 575, 588, 615, 625, 640, 665, 675, 688, 715, 725, 740, 765, 775, 788, 815, 825, 840, 865, 875, 888] <br>
     </code>
     <br></br>
     <h3 style="color: #FFF">Case 2</h3>
     <code>
-        Input: s = 123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890000000000009876543210987654321098765432109876543210987654321098765432109876543210987654321098765432109876543210987654321098765432109876543210987654321098765432109876543210987654321098765432109876543210987654321098765432109876543210987654321098765432109876543210987654321098765432109876543210987654321 <br>
+        Input: X = [4, 9, 13, 17, 22, 27, 31, 36, 44, 48, 53, 57, 61, 66, 72, 79, 83, 88, 94, 99, 104, 109, 113, 118, 123, 129, 134, 139, 145, 149, 154, 159, 163, 168, 173, 179, 184, 189, 193, 198, 204, 209, 214, 219, 223, 228, 233, 239, 244, 249, 254, 259, 263, 268, 273, 279, 284, 289, 294, 299, 304, 309, 314, 319, 324, 329, 334, 339, 344, 349, 354, 359, 364, 369, 374, 379, 384, 389, 394, 399, 404, 409, 414, 419, 424, 429, 434, 439, 444, 449, 454, 459, 464, 469, 474, 479, 484, 489, 495, 845] <br>
     </code>
 </p>
 
