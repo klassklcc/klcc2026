@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>KL-Coding Cup</title>
+    <title>KL Coding Cup</title>
     <meta charset="utf-8" />
     <meta
       name="viewport"
@@ -35,7 +35,7 @@
       <a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
       <aside id="colorlib-aside" role="complementary" class="js-fullheight">
         <h1 id="colorlib-logo" class="mb-4 mb-md-5">
-          <a href="index.html" style="background-color: white">KL-CC</a>
+          <a href="index.html" style="background-color: white">KLCC</a>
         </h1>
         <nav id="colorlib-main-menu" role="navigation">
           <ul>
@@ -54,7 +54,7 @@
             </li>
 
             <li>
-              <h3><a href="past_content.html">Murder Mystery Round</a></h3>
+              <h3><a href="past_content.html">Escape Room Round</a></h3>
             </li>
             <li></li>
             <li>
@@ -62,7 +62,7 @@
             </li>
           </ul>
           <h3 style="padding-top: 100%">
-            <a href="https://github.com/asian-mario">Made By: Rangga</a>
+            <a href="https://github.com/asian-mario">Made By: Rangga & Awab</a>
           </h3>
         </nav>
       </aside>
@@ -76,11 +76,9 @@
               padding-bottom: 0.5rem;
             "
           >
-            <h1 class="colorlib-heading">Encryption Key</h1>
+            <h1 class="colorlib-heading">Median Breach</h1>
             <div style="color: #fff">
-              We've intercepted an encrypted message encoded with nested
-              parentheses. Ensure the message is correctly structured—every
-              opening parenthesis needs a matching closing one.
+              The director is still skeptical of your skills, so he keeps giving you questions. Prove your skills!
               <br />
               <b>Explanation</b>
               <br />
@@ -88,37 +86,17 @@
               <ul style="color: #fff">
                 <li>
                   <p>
-                    <code>s</code>: A string containing only the characters '(',
-                    ')', '{', '}', '[', ']', '<', '>'
+                    <code>L</code>: An array containing integers
                   </p>
                 </li>
               </ul>
               <br />
               <div style="color: #fff">
-                Your task is to determine if the input string is valid:
-                <ul>
-                  <li>
-                    Every opening parenthesis/bracket/brace must have a matching
-                    closing one.
-                  </li>
-                  <li>
-                    Pairs must be properly nested (e.g.,
-                    <code>"([{}])"</code> is valid, but <code>"[(])"</code> is
-                    not).
-                  </li>
-                </ul>
-                For example, given <code>s = "([{}])"</code>, the output would
-                be <code>true</code> because the string is properly nested and
-                balanced.
+                Your task is to find the median in the array.
               </div>
               <br />
               <h3 style="color: #fff">Example Case</h3>
-              <code>
-                Input: s = "([{}])" <br />
-                Explanation: Every opening character has a matching and properly
-                nested closing one. <br />
-                Expected Output: true
-              </code>
+                Input: L = <code>[10,9,8,10,10,582,521,981,75,37,58]</code>, Output: 37
               <br />
               <h3 style="color: #fff; padding-top: 1.2rem">Case 1</h3>
               <code>
