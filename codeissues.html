@@ -79,45 +79,45 @@
     
     <br></br>
     <h3 style="color: #FFF">Question 1</h3>
-    <h5 style = "color: #FFF">What is the issue with the following code? It should sum all the numbers between 1 and 10 inclusive, but it does not work.</h5>
-    <pre><code style = "color: #DDD">
-      total = 0
-      for i in range(1,10):
-        total += i
+    <h6 style = "color: #FFF">What is the issue with the following code? It should sum all the numbers between 1 and 10 inclusive, but it does not work.</h6>
+    <pre><code style = "color: #617391">
+    total = 0
+    for i in range(1,10):
+      total += i
     </code></pre>
     <h3 style="color: #FFF">Question 2</h3>
-    <h5 style = "color: #FFF">What is the issue with the following code? It should multiply the input by two, but it does not work.</h5>
-    <pre><code style = "color: #DDD">
-      age = input()
-      print(2*age)
+    <h6 style = "color: #FFF">What is the issue with the following code? It should multiply the input by two, but it does not work.</h6>
+    <pre><code style = "color: #617391">
+    age = input()
+    print(2*age)
     </code></pre>
     <h3 style="color: #FFF">Question 3</h3>
-    <h5 style = "color: #FFF">What is the issue with the following code? The code is trying to determine if a number is strictly bigger than everything else in the list, but it prints True instead of false.</h5>
-    <pre><code style = "color: #DDD">
-      testlist = [1, 6, 7, 4, 5, 2]
-      number = 3
-      for i in range(len(testlist)):
+    <h6 style = "color: #FFF">What is the issue with the following code? The code is trying to determine if a number is strictly bigger than everything else in the list, but it prints True instead of false.</h6>
+    <pre><code style = "color: #617391">
+    testlist = [1, 6, 7, 4, 5, 2]
+    number = 3
+    for i in range(len(testlist)):
+      bigger = True
+      if number <= testlist[i]:
+        bigger = False
+      else:
         bigger = True
-        if number <= testlist[i]:
-          bigger = False
-        else:
-          bigger = True
-      print(bigger)
+    print(bigger)
     </code></pre>
     <h3 style="color: #FFF">Question 4</h3>
-    <h5 style = "color: #FFF">What is the issue with the following code? It is trying to determine if a list is sorted but it raises an error.</h5>
-    <pre><code style = "color: #DDD">
-      list1 = [1, 6, 7, 4, 5, 2]
-      sort = True
-      for i in range(len(list1)):
-        if list1[i] > list1[i+1]:
-          sort = False
+    <h6 style = "color: #FFF">What is the issue with the following code? It is trying to determine if a list is sorted but it raises an error.</h6>
+    <pre><code style = "color: #617391">
+    list1 = [1, 6, 7, 4, 5, 2]
+    sort = True
+    for i in range(len(list1)):
+      if list1[i] > list1[i+1]:
+        sort = False
     </code></pre>
     <h3 style="color: #FFF">Question 5</h3>
-    <h5 style = "color: #FFF">What is the issue with the following code? It should print the sorted list, but it does not work.</h5>
-    <pre><code style = "color: #DDD">
-      list1 = [1, 6, 7, 4, 5, 2]
-      print(list1.sort())
+    <h6 style = "color: #FFF">What is the issue with the following code? It should print the sorted list, but it does not work.</h6>
+    <pre><code style = "color: #617391">
+    list1 = [1, 6, 7, 4, 5, 2]
+    print(list1.sort())
     </code></pre>
 </p>
 
