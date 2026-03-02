@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>KL-Coding Cup</title>
+    <title>KL Coding Cup</title>
     <meta charset="utf-8" />
     <meta
       name="viewport"
@@ -35,7 +35,7 @@
       <a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
       <aside id="colorlib-aside" role="complementary" class="js-fullheight">
         <h1 id="colorlib-logo" class="mb-4 mb-md-5">
-          <a href="index.html" style="background-color: white">KL-CC</a>
+          <a href="index.html" style="background-color: white">KLCC</a>
         </h1>
         <nav id="colorlib-main-menu" role="navigation">
           <ul>
@@ -50,7 +50,7 @@
             </li>
 
             <li class="colorlib-active">
-              <h3><a href="past_content.html">Murder Mystery Round</a></h3>
+              <h3><a href="past_content.html">Escape Room Round</a></h3>
             </li>
             <li></li>
             <li>
@@ -83,45 +83,18 @@
                       style="padding-top: 20px"
                       class="qualifying-paper-year"
                     >
-                      <h2>Round 2 Part 2 - Dr TxT.exe Room Cipher</h2>
+                      <h2>Round 2 Part 2 - Height swap</h2>
                       <p class="descriptor">
-                        Now you know the location, its time to figure out the exact room number. You are given clues that the specific room number is represented by a 6 character code which further symbolises the actual room number. The code is formatted such that the first two and last 4 characters are separated by a dash. 
+                        Now that you have cleared the debris, in the corner you can clearly see a puzzle linked to another door. Solve the puzzle to continue your progress!<br>
+                        You have to minimise the number of robots that are visible from the front (i.e., H<sub>i</sub> &lt H<sub>j</sub> for all i &lt j). However, you only have k swaps.
                       </p>
+                      <p>Example Question</p>
                       <ul>
-                        <li>The first digit is an anagram of the string and can be modified by using a Caesar Cipher based off a note the victim left before he died (Hqjw Ghdtrm Uxvhq)</li>
+                        <li>Input: [18, 6, 5, 7, 3, 21, 13], k = 3</li>
+                        <li>Output: 1</li>  
+                        <li>Explanation: We can move 21 to the start of the queue, making all of the robots behind the first one not visible. The list then becomes [18, 6, 5, 7, 3, 13, 21], leaving only 21 visible.</li>
                       </ul>
-                      <p>This is a cipher with a shift of 7 applied, but only to the consonants. Vowels (A, E, I, O, U) should remain unchanged. Decrypt this message to find the first character of the code.</p>
-                      <ul>
-                        <li>The second character is hidden in the fibonacci sequence and is hidden and manipulated by a modulo operator: 
-                            <ul>
-                                <li>However, to get the second character, you need to find the sum of the Fibonacci numbers at indices that are prime (1-based index). After summing them, take the result modulo 10 to get a single digit.</li>
-                            </ul>
-                        </li>
-                      </ul>
-                      <ul>
-                        <li>The third character is hidden within a cryptic anagram:
-                            Eihtf Tsno 80
-                        </li>
-                      </ul>
-                      <p>You need to unscramble the letters and combine it with the number at the end of the anagram. The unscrambled phrase describes an hour of the day, and the number at the end gives you the minute. The third character will be the sum of the hour and minute, modulo 6.</p>
-                      <ul>
-                        <li>The fourth character is related to prime numbers. The victim’s journal contains the phrase:<br>
-                            Check the sum of the first N primes where N is the 5th prime number. <br>
-                           </li>
-                      </ul>
-                      <p>To solve this, find the sum of the first 5 primes and then take this sum modulo 9 to get a single-digit number.</p>
-                      <ul>
-                        <li>The fifth character is encrypted using base64 encoding. The encrypted text is:</li>
-                        <li>U29ycnkgdGhpcyBpcyBhIGZpbmUgbW9zdCBzZWFyY2h5IHdoZW4gdGhhdCBvbmUgaGVscGVkIHRoZSBtYW5nbGVzLCBvcmRlcmVkIGluIGhlbHAgb3V0IHRoZSBwYXRoIG9mIHdoZXRoZXIgdXJlIGVjbGlmZGVzIHRoZSBvcmRlciBwb3NpdGlvbnMu</li>
-                      </ul>
-                      <p>Decode the base64 string and extract the first letter of the decoded message as the fifth character.</p>
-                      <ul>
-                        <li>The final character is related to a complex number calculation. A note in the victim’s wallet stated:</li>
-                        <li>‘Find the square root of the sum of the squares of 101 and 200, then subtract 10.’</li>
-                      </ul>
-                      <p>Use this result to determine the last digit of the square root. This will be the final character of the code.</p>
-                      <h4>Prompt:</h4>
-                      <p>Using the clues, write a Python function find_code() that returns the 6-character code that reveals the room number and identity   </p>
+                      <p>Input: The input is too long! Access it <a href="https://docs.google.com/document/d/1-GFSjt5hyss2rMKNYBhs7CMVw5N56XuarLKsRTeGsu4/edit?usp=sharing">here</a></p>  
                       <a href="./temp.html" class="btn btn-primary"
                       >Enter Here</a>
                     </div>
