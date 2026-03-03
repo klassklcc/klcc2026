@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>KL-Coding Cup</title>
+    <title>KL Coding Cup</title>
     <meta charset="utf-8" />
     <meta
       name="viewport"
@@ -35,7 +35,7 @@
       <a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
       <aside id="colorlib-aside" role="complementary" class="js-fullheight">
         <h1 id="colorlib-logo" class="mb-4 mb-md-5">
-          <a href="index.html" style="background-color: white">KL-CC</a>
+          <a href="index.html" style="background-color: white">KLCC</a>
         </h1>
         <nav id="colorlib-main-menu" role="navigation">
           <ul>
@@ -50,7 +50,7 @@
             </li>
 
             <li class="colorlib-active">
-              <h3><a href="past_content.html">Murder Mystery Round</a></h3>
+              <h3><a href="past_content.html">Escape Room Round</a></h3>
             </li>
             <li></li>
             <li>
@@ -83,26 +83,18 @@
                       style="padding-top: 20px"
                       class="qualifying-paper-year"
                     >
-                      <h2>Round 2 Part 3 - Casino Gamblers</h2>
+                      <h2>Round 2 Part 3 - Array Split</h2>
                       <p class="descriptor">
-                        Finally, after obtaining the room number successfully, you still need one more vital piece of information to successfully complete this round.
-                        In the Resorts World Casino, there are a number of gamblers seeking to reap the reward from their frivolous endeavours, at least in the eyes of the mission guide.
-                        You will need to beat them in a game of <bold>Poker</bold> and form a <bold>Royal Flush.</bold> <br>
-
-                        Consider the card game whereby there exists n different suits and there are 13 cards for every suit, containing all different card types in a regular deck of cards (such as A, 2, 3, ..., Jack, Queen etc.).
-                        First, the deck is shuffled randomly. You, a player, are asked to draw the 5 top cards and the following events happen in order.
+                        Finally, you make it past the robots and end up at another locked stairwell. However, this time you are given a long array, and you have to split the array into two such that the difference between their sums are maximised.<br>
                       </p>
-                      <ul>
-                        <li><p>1. If the cards in your hand form a Royal Flush (10, Jack, Queen, King and Ace of the same suit) you win and the game ends.</p></li>
-                        <li><p>2. If you haven't won yet, and the deck is empty, you lose. The game ends</p></li>
-                        <li><p>3. If the game hasn't ended yet, you may choose any cards from your hand (possibly all of them) and discard them. When a card is discarded, it is permanently removed from the game.</p></li>
-                        <li><p>4. Finally, you draw the cards from the deck, until you hav 5 cards or until the deck becomes empty</p></li>
-                      </ul>
                       <p>
-                        Your mission guide has advised to find a strategy that allows you to win in the minimum expected number of turns. Important: when the game ends, the round is not counted.
+                        <h3>Example Case:</h3>
+                        Input: [7, 2, 3, 10, 5, 1]<br>
+                        Output: 4<br>
+                        Explanation: We can split it as [7, 2, 3] and [10, 5, 1] which makes their sums 12 and 16. |12-16| = 4
                         <br><br>
-                        Input : An integer containing the number of suits used in the game (2) <br>
-                        Output : Write a function that returns the minimm number of expected turns.
+                        Input : An array of integers. However, the input is too long to display. Access it <a href="https://docs.google.com/document/d/1-GFSjt5hyss2rMKNYBhs7CMVw5N56XuarLKsRTeGsu4/edit?usp=sharing">here</a><br>
+                        Output : Output the absolute difference between the two sums.
                       </p>
                       <a href="./temp.html" class="btn btn-primary"
                       >Enter Here</a>
