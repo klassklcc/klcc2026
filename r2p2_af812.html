@@ -86,13 +86,13 @@
                       <h2>Round 2 Part 2 - Height swap</h2>
                       <p class="descriptor">
                         Now that you have cleared the debris, in the corner you can clearly see a puzzle linked to another door. Solve the puzzle to continue your progress!<br>
-                        You have to minimise the number of robots that are visible from the front (i.e., H<sub>i</sub> &lt H<sub>j</sub> for all i &lt j). However, you only have k swaps.
+                        You have to minimise the number of robots that are visible from the back (i.e., H<sub>j</sub> > H<sub>i</sub> for all j > i). However, you only have at most k adjacent swaps.
                       </p>
                       <p>Example Question</p>
                       <ul>
                         <li>Input: [28, 30, 5, 7, 3, 21, 13], k = 3</li>
-                        <li>Output: 2</li>  
-                        <li>Explanation: We can move 21 to the start of the queue, making all of the robots behind the first one not visible. The list then becomes [28, 6, 5, 7, 3, 13, 21], leaving only 21 and 30 visible.</li>
+                        <li>Output: 1</li>  
+                        <li>Explanation: We can move 30 to the start of the queue, making all of the robots behind the first one not visible. The list then becomes [30, 28, 5, 7, 3, 21, 13] leaving only 30 visible.</li>
                       </ul>
                       <p>Input: The input is too long! Access it <a href="https://docs.google.com/document/d/1-GFSjt5hyss2rMKNYBhs7CMVw5N56XuarLKsRTeGsu4/edit?usp=sharing">here</a></p>  
                       <a href="./temp.html" class="btn btn-primary"
