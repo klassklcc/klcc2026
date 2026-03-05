@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>KL-Coding Cup</title>
+    <title>KL Coding Cup</title>
     <meta charset="utf-8" />
     <meta
       name="viewport"
@@ -35,7 +35,7 @@
       <a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
       <aside id="colorlib-aside" role="complementary" class="js-fullheight">
         <h1 id="colorlib-logo" class="mb-4 mb-md-5">
-          <a href="index.html" style="background-color: white">KL-CC</a>
+          <a href="index.html" style="background-color: white">KLCC</a>
         </h1>
         <nav id="colorlib-main-menu" role="navigation">
           <ul>
@@ -50,7 +50,7 @@
             </li>
 
             <li class="colorlib-active">
-              <h3><a href="past_content.html">Murder Mystery Round</a></h3>
+              <h3><a href="past_content.html">Escape Room Round</a></h3>
             </li>
             <li></li>
             <li>
@@ -59,21 +59,6 @@
           </ul>
         </nav>
       </aside>
-      <!-- END COLORLIB-ASIDE -->
-      <!DOCTYPE html>
-      <html lang="en">
-        <head>
-          <title>KLSMC</title>
-          <meta charset="utf-8" />
-          <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1, shrink-to-fit=no"
-          />
-          <!-- ... other links ... -->
-          <link rel="stylesheet" href="css/style.css" />
-        </head>
-        <body class="dark-theme">
-          <!-- ... existing content ... -->
           <div id="colorlib-main">
             <section class="ftco-section ftco-no-pt ftco-no-pb">
               <div class="container">
@@ -85,20 +70,36 @@
                     >
                       <h2>Final Round</h2>
                       <p class="descriptor">
-                        Finally, with the help of security and CCTV footage, you are able to catch a glimpse of the murderer fleeing from the scene of the crime. <br>
-                        Using the image, your mission guide informs you that you are able to decrypt the image and discover the name of the cryptic attacker who started it all.
-                        <br>
-                        Find the name of the murderer to complete the mission
-                        
+                        You have finally bypassed the second vault. However, you discover that the entire system is split into N terminals. To reboot the system and revert the changes you must link terminals together using Data Cables<br>
+                        You have managed to recover a set of M timestamped logs. These logs show that two terminals were linked at a specific timestamp.<br>
+                        The system will only reboot if three specific "Core Terminals" are part of the same connected network. You must find the earliest timestamp at which these three terminals became interconnected.<br>
                       </p>
                       <br>
-                      <h3>Encrypted Image:</h3>
-                      <img src="./qData/r4/titfo.png" style="padding-bottom: 0.9rem;">
-                      <h3>Original Image:</h3>
-                      <img src="./qData/r4/titro.png">
-                      <h2 style="padding-top: 2rem;">Show your answer to the nearest detective and then submit your answer.</h2>
-
-                      <a href="./temp.html" class="btn btn-primary"
+                      <h3>Example Question</h3>
+                      <p>
+                        Input style:<br>
+                          a b c (terminals to sync)<br>
+                          N M (total terminals and the length of the logs)<br>
+                          T<sub>1</sub> A<sub>1</sub> B<sub>1</sub> (these follow the structure (time, Terminal A, Terminal B)<br>
+                          T<sub>2</sub> A<sub>2</sub> B<sub>2</sub><br>
+                          ...<br>
+                          T<sub>M</sub> A<sub>M</sub> B<sub>M</sub><br>
+                       </p>
+                      <code>
+                        Example input:<br>
+                          1 4 6<br>
+                          7 6<br>
+                          100 1 2<br>
+                          150 5 6<br>
+                          200 4 5<br>
+                          250 2 7<br>
+                          300 1 3<br>
+                          350 3 4<br>
+                        Output: 350<br>
+                        Explanation: At time 350, it connects {1, 2, 3, 7} and {4, 5, 6} which results in {1, 2, 3, 4, 5, 6, 7}, and is the only one where 1, 4, and 6 are connected.<br>
+                      </code>
+                      <p>The input is too long! Download it <a href="https://docs.google.com/document/d/1yemb3wBcLI3g8HKGsVnF1IIdJ7rc2dStLdde2ZCIx6U/edit?usp=sharing">here</a></p>
+                        <a href="./temp.html" class="btn btn-primary"
                       >Enter Here</a>
                     </div>
                 
