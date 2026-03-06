@@ -50,7 +50,7 @@
             </li>
 
             <li>
-              <h3><a href="past_content.html">Escape Room Round</a></h3>
+              <h3><a href="past_content.html" data-unlock="2026-03-07T03:00:00">Escape Room Round</a></h3>
             </li>
             <li>
               
@@ -64,21 +64,6 @@
           </h3>
         </nav>
       </aside>
-      <!-- END COLORLIB-ASIDE -->
-      <!DOCTYPE html>
-      <html lang="en">
-        <head>
-          <title>KLSMC</title>
-          <meta charset="utf-8" />
-          <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1, shrink-to-fit=no"
-          />
-          <!-- ... other links ... -->
-          <link rel="stylesheet" href="css/style.css" />
-        </head>
-        <body class="dark-theme">
-          <!-- ... existing content ... -->
           <div id="colorlib-main">
             <section class="ftco-section ftco-no-pt ftco-no-pb">
               <div class="container" style="padding-top: 20px">
@@ -104,10 +89,10 @@
                   
                   </div>
 
-                  <div class="square">
+                  <div class="square" data-unlock="2026-03-07T02:23:00" style="display: none;">
                     <h2>Median Breach</h2>
                     <p>
-                      To prove you are skilled enough to join the team, the director has given you a challenge. Try not to fail, as this question deducts <b>40 Points</b> if answered incorrectly<br></br> 
+                      To prove you are skilled enough to join the team, the director has given you a challenge.<br></br> 
                       Difficulty: <b>Easy/Moderate</b>
                     </p>
 
@@ -118,7 +103,7 @@
                     >
                   
                   </div>
-                  <div class="square">
+                  <div class="square" data-unlock="2026-03-07T02:26:00" style="display: none;">
                       <h2>Triple sum</h2>
                     <p style="padding-bottom: 0%">
                       The director is still unsure of your skills. Prove him wrong, and show you are smart enough to join the team. He wants to find all triples in an array such that their sum is equal to the input.<br /><br />
@@ -131,7 +116,7 @@
                       >Question</a
                     >
                   </div>
-                  <div class="square">
+                  <div class="square" data-unlock="2026-03-07T02:29:00" style="display: none;">
                     <h2>Security feed</h2>
                     <p>
                       Congratulations! You have been accepted to the team! However, the director has encountered an issue. The security feed is broken and the error message is showing a strange binary string!
@@ -153,7 +138,7 @@
                       >Question</a
                     >
                   </div>
-                  <div class="square">
+                  <div class="square" data-unlock="2026-03-07T02:32:00" style="display: none;">
                     <h2>Good mood</h2>
                     <p style="padding-bottom: 0%">
                       The stress of being on the team is taking a toll. Each day, your mood fluctuates wildly. Some days are great, and others are filled with despair. Track the longest streak of "good mood days" to determine when you're most effective.<br /><br />
@@ -172,7 +157,7 @@
                       >Question</a
                     >
                   </div>
-                  <div class="square">
+                  <div class="square" data-unlock="2026-03-07T02:35:00" style="display: none;">
                     <h2>Zero Sum</h2>
                     <p style="padding-bottom: 0%">
                       Input is denoted by an array of integers <b>N</b>.
@@ -190,14 +175,13 @@
                       >Question</a
                     >
                   </div>
-                  <div class="square">
+                  <div class="square" data-unlock="2026-03-07T02:38:00" style="display: none;">
                     <h2>Tuple Checking</h2>
                     <p style="padding-bottom: 0%">
                       Input is denoted by an array of integers <b>A</b>.  
                       <ul>
                         <li>Your task is to find the number of tuples of 4 distinct indices (i,j,k,l) such that (A<sub>i</sub>,A<sub>j</sub>,A<sub>k</sub>,A<sub>l</sub>) = (A,W,A,B)</li>
                       </ul>
-                      <p>WARNING! This question deducts 50 points for any wrong attempt!</p>
                       Difficulty:
                       <b
                         >Very hard</b
@@ -207,14 +191,14 @@
                       >Question</a
                     >
                   </div>
-                  <div class="square">
+                  <div class="square" data-unlock="2026-03-07T02:41:00" style="display: none;">
                     <h2>Palindromic addition</h2>
                     <p style="padding-bottom: 0%">
                       Input is denoted by an array of integers <b>P</b>.  
                       <ul>
                         <li>Your task is to find the largest palindromic number that can be made by adding (NOT CONCATENATING) the numbers in the given array.</li>
                       </ul>
-                      <p>WARNING! This question deducts 60 points for any wrong attempt!</p>
+                    <p>WARNING! This question deducts 20 points for <b>every</b> wrong attempt!</p>
                       Difficulty:
                       <b
                         >Very hard</b
@@ -245,162 +229,6 @@
               </div>
             </section>
           </div>
-          <script>
-    document.addEventListener("DOMContentLoaded", function () {
-    // Fetch data from the Google Sheets CSV
-    fetch(
-      "https://docs.google.com/spreadsheets/d/e/2PACX-1vTea1Hp5rkgRfh49dopeM58Q6F4qVSrZRQWIHmjPYYjabpf1hCtiB4_8waPVBgmMCjCbU5mn3fPb7II/pub?gid=1927463165&single=true&output=csv"
-    )
-      .then((response) => response.text())
-      .then((csv) => {
-        let lines = csv.split("\n"); // Split CSV into lines
-        console.log("CSV Preview:", lines.slice(0, 5)); // Debug the first few lines
-
-        let result = []; // This will store the leaderboard data
-
-        // Loop through rows (start from row 2 to skip the header)
-        for (let i = 1; i < lines.length; i++) {
-          let currentline = lines[i].split(",").map((cell) => cell.trim());
-
-          // Skip rows without valid data (e.g., missing Team ID or Total)
-          if (currentline.length < 4 || !currentline[0] || isNaN(Number(currentline[3]))) {
-            continue;
-          }
-
-          // Extract Team ID and Total
-          let teamID = currentline[0]; // Column A
-          let total = Number(currentline[3]); // Column D
-
-          result.push({ "Team ID": teamID, Total: total });
-        }
-
-        // Sort by Total (descending)
-        result.sort((a, b) => b.Total - a.Total);
-
-        // Limit to top 15 entries
-        let top15 = result.slice(0, 15);
-
-        // Update the leaderboard table
-        const tableBody = document
-          .getElementById("leaderboardTable")
-          .getElementsByTagName("tbody")[0];
-        tableBody.innerHTML = ""; // Clear existing table content
-
-        top15.forEach((row, index) => {
-          let tr = document.createElement("tr");
-          tr.innerHTML = `<td>${index + 1}</td><td>${row["Team ID"]}</td><td>${row.Total}</td>`;
-          tableBody.appendChild(tr);
-        });
-      })
-      .catch((error) => console.error("Error:", error));
-  });
-
-            const sections = [
-              { id: "fermi", duration: 60 * 5 }, // 5 minutes for Fermi Problems
-              { id: "calculus", duration: 60 * 10 }, // 10 minutes for Calculus Round
-              { id: "proof", duration: 60 * 15 }, // 15 minutes for In Pursuit of Proof
-              // ... add more sections if needed ...
-            ];
-
-            function formatTime(duration) {
-              var hours = parseInt(duration / 3600, 10);
-              var minutes = parseInt((duration % 3600) / 60, 10);
-              var seconds = parseInt(duration % 60, 10);
-              hours = hours < 10 ? "0" + hours : hours;
-              minutes = minutes < 10 ? "0" + minutes : minutes;
-              seconds = seconds < 10 ? "0" + seconds : seconds;
-              return hours + ":" + minutes + ":" + seconds;
-            }
-
-            function resetTimer(linkId) {
-              localStorage.removeItem(linkId + "-end");
-              localStorage.removeItem(linkId + "-version");
-              localStorage.removeItem(linkId + "-reset");
-              var section = sections.find((s) => linkId.startsWith(s.id));
-              if (section) {
-                var timerDisplay = document.querySelector(
-                  "#timer" +
-                    section.id.charAt(0).toUpperCase() +
-                    section.id.slice(1)
-                );
-                timerDisplay.textContent = formatTime(section.duration);
-                var linkElement = document.getElementById(linkId);
-                linkElement.style.display = "none"; // Hide the link when resetting
-              }
-            }
-
-            function startTimer(duration, display, linkId) {
-              var end = localStorage.getItem(linkId + "-end");
-              var resetFlag = localStorage.getItem(linkId + "-reset");
-              if (resetFlag === "true" || !end) {
-                resetTimer(linkId);
-                end = Date.now() + duration * 1000;
-                localStorage.setItem(linkId + "-end", end);
-                localStorage.removeItem(linkId + "-reset");
-              }
-              var interval = setInterval(function () {
-                var remaining = end - Date.now();
-                var timer = remaining / 1000;
-                if (remaining <= 0) {
-                  clearInterval(interval);
-                  display.textContent = "00:00:00";
-                  var linkElement = document.getElementById(linkId);
-                  linkElement.style.display = "block"; // Show the link when the timer ends
-                  localStorage.removeItem(linkId + "-end");
-                } else {
-                  display.textContent = formatTime(timer);
-                }
-              }, 1000);
-            }
-
-            window.onload = function () {
-              sections.forEach(function (section) {
-                var timerDisplay = document.getElementById(
-                  "timer" +
-                    section.id.charAt(0).toUpperCase() +
-                    section.id.slice(1)
-                );
-                var linkId = section.id + "-link";
-                startTimer(section.duration, timerDisplay, linkId);
-              });
-            };
-          </script>
-          <script>
-            document.addEventListener("DOMContentLoaded", function () {
-                // Define release times for each question in GMT+8
-                const releaseTimes = {
-                    "Q1": new Date("2025-03-02T10:20:00+08:00"),
-                    "Q2": new Date("2025-03-02T10:25:00+08:00"),
-                    "Q3": new Date("2025-03-02T10:30:00+08:00"),
-                    "Q4": new Date("2025-03-02T10:35:00+08:00"),
-                    "Q5": new Date("2025-03-02T10:40:00+08:00"),
-                    "Q6": new Date("2025-03-02T10:45:00+08:00"),
-                    "Q7": new Date("2025-03-02T10:50:00+08:00"),
-                    "Q8": new Date("2025-03-02T10:55:00+08:00")
-                };
-          
-                function updateButtons() {
-                    const now = new Date(); // Current time in the user's timezone
-                    const gmt8Now = new Date(now.toLocaleString("en-US", { timeZone: "Asia/Singapore" })); // Convert to GMT+8
-          
-                    document.querySelectorAll("a.btn-disabled").forEach(button => {
-                        const questionKey = button.getAttribute("href").match(/q(\d+)/i); // Extract Q1, Q2, etc.
-                        
-                        if (questionKey) {
-                            const qNumber = "Q" + questionKey[1]; // Convert to Q1, Q2...
-                            
-                            if (releaseTimes[qNumber] && gmt8Now >= releaseTimes[qNumber]) {
-                                button.classList.remove("btn-disabled");
-                                button.classList.add("btn-primary");
-                            }
-                        }
-                    });
-                }
-          
-                updateButtons(); // Run on page load
-                setInterval(updateButtons, 1000); // Check every second for updates
-            });
-          </script>          
         </body>
       </html>
 
@@ -446,6 +274,7 @@
     <script src="js/scrollax.min.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
     <script src="js/google-map.js"></script>
+    <script src="js/timer.js"></script>
     <script src="js/main.js"></script>
   </body>
 </html>
