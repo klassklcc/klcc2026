@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>KL-Coding Cup</title>
+    <title>KL Coding Cup</title>
     <meta charset="utf-8" />
     <meta
       name="viewport"
@@ -39,30 +39,42 @@
     </div>
 
     <script>
+      function hash(string) {
+        string = string.toString();
+        let hash = 0;
+        if (string.length === 0) return hash;
+    
+        for (let i = 0; i < string.length; i++) { 
+            const char = string.charCodeAt(i); 
+            hash = ((hash << 5) - hash) + char;
+            hash = hash & hash;
+        }
+        return hash;
+    }
       function submitPassword() {
         const password = document.getElementById("password").value;
-
+        const userHash = hash(password);
         // Map passwords to their respective pages
         /*
           if you're reading this text. fuck off, you aren't meant to be here. cheating is for losers, and i'm a solo man team that put this together ALONE and i know it's not very good.
           so play ball. and plau fairly.
         */
         const passwordRedirectMap = {
-          "103": "r1p2.html", // Redirect to page1.html
-          "Jessie Laura Palmer": "r2p1.html", // Redirect to page1.html
-          "Resorts World Genting Shopping Mall": "r2p2.html", 
-          "A3-411": "r2p3.html", 
-          "8.067171309": "r3p1.html", 
-          "148257": "r3p2.html",
-          "77": "r3p3.html",
-          "110914898652": "r3p4.html",
-          "Golden Scythe": "r4.html",
-          "Anabelle Myers": "823123.html"
+          "1816": atob("cjFwMl9reDkyMS5odG1s"), // Redirect to page1.html
+          "257205458": atob("cjJwaV96bTQ0Mi5odG1s"), // Redirect to page1.html
+          "1574": atob("cjJwMl9hZjgxMi5odG1s"), 
+          "1605": atob("cjJwMl9hZjgxMi5odG1s"), 
+          "294056": atob("cjNwMV9tcTY1NC5odG1s"), 
+          "52": atob("cjNwMV9tcTY1NC5odG1s"),
+          "1692": atob("cjNwM19uaW80OC5odG1s"),
+          "91451443": atob("cjNwNF9zdmtuby5odG1s"),
+          "1791948915": atob("ZmluYWxfZGEwc3UuaHRtbA=="),
+          "52722": atob("ODIxMjMuaHRtbA==")
         };
 
-        if (password in passwordRedirectMap) {
+        if (userHash in passwordRedirectMap) {
           // Redirect to the page mapped to the password
-          window.location.href = passwordRedirectMap[password];
+          window.location.href = passwordRedirectMap[userHash];
         } else {
           alert("Incorrect password!");
         }
