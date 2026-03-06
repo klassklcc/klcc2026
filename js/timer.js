@@ -1,34 +1,44 @@
-function updateCompetitionElements() {
-    // Get current time (Works regardless of user's local timezone)
-    const now = new Date().getTime();
-    
-    // Find everything with a data-unlock attribute
-    document.querySelectorAll('[data-unlock]').forEach(el => {
-        const unlockTime = new Date(el.getAttribute('data-unlock') + "Z").getTime();
-        const isPastTime = now >= unlockTime;
+(function() {
+    function updateCompetitionElements() {
+        const now = new Date().getTime();
+        
+        document.querySelectorAll('[data-unlock]').forEach(el => {
+            // "Z" ensures the string is treated as UTC/GMT
+            const unlockString = el.getAttribute('data-unlock');
+            const unlockTime = new Date(unlockString.endsWith('Z') ? unlockString : unlockString + "Z").getTime();
+            const isUnlocked = now >= unlockTime;
 
-        // CHECK TAG TYPE: Is it a DIV or an Anchor?
-        if (el.tagName === 'DIV') {
-            // DIV LOGIC: Completely disappear/appear
-            el.style.display = isPastTime ? "block" : "none";
-        } 
-        else if (el.tagName === 'A') {
-            // LINK LOGIC: Fade out/in but stay visible
-            if (isPastTime) {
-                el.style.pointerEvents = "auto";
-                el.style.opacity = "1";
-                el.style.cursor = "pointer";
-            } else {
-                el.style.pointerEvents = "none";
-                el.style.opacity = "0.5";
-                el.style.cursor = "not-allowed";
-                el.onclick = (e) => e.preventDefault();
+            if (el.tagName === 'DIV') {
+                // For Question Squares: Completely remove or show
+                el.style.setProperty('display', isUnlocked ? 'block' : 'none', 'important');
+            } 
+            else if (el.tagName === 'A') {
+                // For Sidebar Links: Disable interaction and fade
+                if (isUnlocked) {
+                    el.style.pointerEvents = "auto";
+                    el.style.opacity = "1";
+                    el.style.cursor = "pointer";
+                    el.onclick = null; 
+                } else {
+                    el.style.pointerEvents = "none";
+                    el.style.opacity = "0.5";
+                    el.style.cursor = "not-allowed";
+                    // Prevent any accidental clicks
+                    el.onclick = function(e) { 
+                        e.preventDefault(); 
+                        return false; 
+                    };
+                }
             }
-        }
-    });
-}
+        });
+    }
 
-// Run every second
-setInterval(updateCompetitionElements, 1000);
-// Run immediately on page load
-window.addEventListener('load', updateCompetitionElements);
+    // 1. Run immediately to catch the "quick clickers"
+    updateCompetitionElements();
+
+    // 2. Run every second to unlock in real-time
+    setInterval(updateCompetitionElements, 1000);
+
+    // 3. Backup: Run when window fully loads
+    window.addEventListener('load', updateCompetitionElements);
+})();
