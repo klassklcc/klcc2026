@@ -74,7 +74,7 @@
 
         if (userHash in passwordRedirectMap) {
           // Redirect to the page mapped to the password
-          window.location.href = passwordRedirectMap[userHash];
+          window.location.href = passwordRedirectMap[userHash.toString()];
         } else {
           alert("Incorrect password!");
         }
