@@ -210,10 +210,12 @@
                   </div>
                   <div class="square">
                     <h2 class="colorlib-heading">Leaderboard</h2>
+
                     <table id="leaderboardTable">
                       <thead>
                         <tr>
-                          <th>Position</th> <!-- New Position column -->
+                          <th>Position</th>
+                          <th>Movement</th>
                           <th>Team Name</th>
                           <th>Points</th>
                         </tr>
@@ -223,6 +225,144 @@
                       </tbody>
                     </table>
                   </div>
+
+                  <script>
+                    const LEADERBOARD_CSV_URL =
+                      "https://docs.google.com/spreadsheets/d/e/2PACX-1vTu6Xw6sKWdPXuPMt8mZgeqXrPXOmbpqKVpekzkDsk-pI5Cxx491oGO8ENy1OyVBOYXxVCu5PstbjJE/pub?gid=167447163&single=true&output=csv";
+
+                    const LEADERBOARD_SIZE = 15;
+                    const REFRESH_INTERVAL_MS = 10000;
+
+                    // Stores previous visible rankings: { "Team Name": previousRank }
+                    let previousRanks = {};
+
+                    document.addEventListener("DOMContentLoaded", function () {
+                      loadLeaderboard();
+                      setInterval(loadLeaderboard, REFRESH_INTERVAL_MS);
+                    });
+
+                    function loadLeaderboard() {
+                      fetch(LEADERBOARD_CSV_URL + "&t=" + Date.now())
+                        .then((response) => response.text())
+                        .then((csv) => {
+                          const lines = csv
+                            .split("\n")
+                            .map((line) => line.trim())
+                            .filter((line) => line !== "");
+
+                          const result = [];
+
+                          // Start from row 2 (skip header)
+                          for (let i = 1; i < lines.length; i++) {
+                            const row = parseCSVLine(lines[i]);
+
+                            if (row.length < 4) continue;
+
+                            const teamName = String(row[0] || "").trim(); // Column A
+                            const totalRaw = String(row[3] || "").trim(); // Column D
+                            const total = Number(totalRaw.replace(/,/g, ""));
+
+                            if (!teamName || isNaN(total)) continue;
+
+                            result.push({
+                              teamName,
+                              total
+                            });
+                          }
+
+                          const topTeams = result.slice(0, LEADERBOARD_SIZE);
+                          renderLeaderboard(topTeams);
+                        })
+                        .catch((error) => {
+                          console.error("Leaderboard error:", error);
+                        });
+                    }
+
+                    function renderLeaderboard(rows) {
+                      const tableBody = document
+                        .getElementById("leaderboardTable")
+                        .querySelector("tbody");
+
+                      tableBody.innerHTML = "";
+
+                      const newRanks = {};
+
+                      rows.forEach((row, index) => {
+                        const currentRank = index + 1;
+                        const previousRank = previousRanks[row.teamName];
+                        const movement = getMovement(previousRank, currentRank);
+
+                        const tr = document.createElement("tr");
+                        tr.innerHTML = `
+                          <td>${currentRank}</td>
+                          <td class="movement ${movement.className}">${movement.label}</td>
+                          <td>${escapeHtml(row.teamName)}</td>
+                          <td>${row.total}</td>
+                        `;
+
+                        tableBody.appendChild(tr);
+                        newRanks[row.teamName] = currentRank;
+                      });
+
+                      previousRanks = newRanks;
+                    }
+
+                    function getMovement(previousRank, currentRank) {
+                      if (typeof previousRank === "undefined") {
+                        return { label: "NEW", className: "movement-new" };
+                      }
+
+                      if (previousRank > currentRank) {
+                        return {
+                          label: `↑ ${previousRank - currentRank}`,
+                          className: "movement-up"
+                        };
+                      }
+
+                      if (previousRank < currentRank) {
+                        return {
+                          label: `↓ ${currentRank - previousRank}`,
+                          className: "movement-down"
+                        };
+                      }
+
+                      return { label: "—", className: "movement-same" };
+                    }
+
+                    function parseCSVLine(line) {
+                      const result = [];
+                      let current = "";
+                      let inQuotes = false;
+
+                      for (let i = 0; i < line.length; i++) {
+                        const char = line[i];
+                        const next = line[i + 1];
+
+                        if (char === '"') {
+                          if (inQuotes && next === '"') {
+                            current += '"';
+                            i++;
+                          } else {
+                            inQuotes = !inQuotes;
+                          }
+                        } else if (char === "," && !inQuotes) {
+                          result.push(current);
+                          current = "";
+                        } else {
+                          current += char;
+                        }
+                      }
+
+                      result.push(current);
+                      return result;
+                    }
+
+                    function escapeHtml(text) {
+                      const div = document.createElement("div");
+                      div.textContent = text;
+                      return div.innerHTML;
+                    }
+                  </script>
                   </div>
                 </div>
 
