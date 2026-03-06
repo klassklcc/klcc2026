@@ -1,24 +1,34 @@
-function updateLinks() {
+function updateCompetitionElements() {
+    // Get current time (Works regardless of user's local timezone)
     const now = new Date().getTime();
     
-    document.querySelectorAll('a[data-unlock]').forEach(link => {
-        const unlockDate = new Date(link.getAttribute('data-unlock') + "Z"); 
-        const unlockTime = unlockDate.getTime();
+    // Find everything with a data-unlock attribute
+    document.querySelectorAll('[data-unlock]').forEach(el => {
+        const unlockTime = new Date(el.getAttribute('data-unlock') + "Z").getTime();
+        const isPastTime = now >= unlockTime;
 
-        if (now >= unlockTime) {
-            link.style.pointerEvents = "auto";
-            link.style.opacity = "1";
-            link.style.display = "inline";
-        } else {
-            link.style.pointerEvents = "none";
-            link.style.opacity = "0.5";
-            link.onclick = function(e) {
-                e.preventDefault();
-                return false;
-            };
+        // CHECK TAG TYPE: Is it a DIV or an Anchor?
+        if (el.tagName === 'DIV') {
+            // DIV LOGIC: Completely disappear/appear
+            el.style.display = isPastTime ? "block" : "none";
+        } 
+        else if (el.tagName === 'A') {
+            // LINK LOGIC: Fade out/in but stay visible
+            if (isPastTime) {
+                el.style.pointerEvents = "auto";
+                el.style.opacity = "1";
+                el.style.cursor = "pointer";
+            } else {
+                el.style.pointerEvents = "none";
+                el.style.opacity = "0.5";
+                el.style.cursor = "not-allowed";
+                el.onclick = (e) => e.preventDefault();
+            }
         }
     });
 }
 
-setInterval(updateLinks, 1000);
-window.addEventListener('load', updateLinks);
+// Run every second
+setInterval(updateCompetitionElements, 1000);
+// Run immediately on page load
+window.addEventListener('load', updateCompetitionElements);
