@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <title>KL Coding Cup</title>
@@ -23,8 +23,8 @@
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
-    <div id="colorlib-page" style="margin-right: 15rem;">
-      <div id="colorlib-main" style="margin-right: 20rem;">
+    <div id="colorlib-page" style="margin-right: 15rem">
+      <div id="colorlib-main" style="margin-right: 20rem">
         <section
           class="ftco-section ftco-no-pt ftco-no-pb"
           style="margin-left: 40%; margin-right: 30%; margin-top: 17rem"
@@ -43,38 +43,70 @@
         string = string.toString();
         let hash = 0;
         if (string.length === 0) return hash;
-    
-        for (let i = 0; i < string.length; i++) { 
-            const char = string.charCodeAt(i); 
-            hash = ((hash << 5) - hash) + char;
-            hash = hash & hash;
+
+        for (let i = 0; i < string.length; i++) {
+          const char = string.charCodeAt(i);
+          hash = (hash << 5) - hash + char;
+          hash = hash & hash;
         }
         return hash;
-    }
+      }
+
+      /* 
+      SET THE CURRENT LEVEL HERE
+      Change this number on each page
+      */
+      const CURRENT_LEVEL = 1;
+
       function submitPassword() {
         const password = document.getElementById("password").value;
         const userHash = hash(password);
-        // Map passwords to their respective pages
+
         /*
-          if you're reading this text. fuck off, you aren't meant to be here. cheating is for losers, and i'm a solo man team that put this together ALONE and i know it's not very good.
-          so play ball. and plau fairly.
+        passwordRedirectMap is ordered by adjacency
+        each level contains ONLY the hashes valid for that level
         */
+
         const passwordRedirectMap = {
-          "1816": atob("cjFwMl9reDkyMS5odG1s"), // Redirect to page1.html
-          "257205458": atob("cjJwaV96bTQ0Mi5odG1s"), // Redirect to page1.html
-          "1574": atob("cjJwMl9hZjgxMi5odG1s"), 
-          "1605": atob("cjJwMl9hZjgxMi5odG1s"), 
-          "294056": atob("cjNwMV9tcTY1NC5odG1s"), 
-          "52": atob("cjNwMV9tcTY1NC5odG1s"),
-          "1692": atob("cjNwM19uaW80OC5odG1s"),
-          "91451443": atob("cjNwNF9zdmtuby5odG1s"),
-          "1791948915": atob("ZmluYWxfZGEwc3UuaHRtbA=="),
-          "52722": atob("ODIxMjMuaHRtbA==")
+          1: {
+            1816: atob("cjFwMl9reDkyMS5odG1s"),
+          },
+
+          2: {
+            257205458: atob("cjJwaV96bTQ0Mi5odG1s"),
+          },
+
+          3: {
+            1574: atob("cjJwMl9hZjgxMi5odG1s"),
+            1605: atob("cjJwMl9hZjgxMi5odG1s"),
+          },
+
+          4: {
+            294056: atob("cjNwMV9tcTY1NC5odG1s"),
+            52: atob("cjNwMV9tcTY1NC5odG1s"),
+          },
+
+          5: {
+            1692: atob("cjNwM19uaW80OC5odG1s"),
+          },
+
+          6: {
+            91451443: atob("cjNwNF9zdmtuby5odG1s"),
+          },
+
+          7: {
+            1791948915: atob("ZmluYWxfZGEwc3UuaHRtbA=="),
+          },
+
+          8: {
+            52722: atob("ODIxMjMuaHRtbA=="),
+          },
         };
 
-        if (userHash in passwordRedirectMap) {
-          // Redirect to the page mapped to the password
-          window.location.href = passwordRedirectMap[userHash.toString()];
+        const levelMap = passwordRedirectMap[CURRENT_LEVEL];
+
+        if (levelMap && userHash in levelMap) {
+          window.location.href = levelMap[userHash];
         } else {
           alert("Incorrect password!");
         }
