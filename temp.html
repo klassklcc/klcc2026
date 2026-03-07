@@ -37,7 +37,6 @@
         </section>
       </div>
     </div>
-
     <script>
       function hash(string) {
         string = String(string);
@@ -52,17 +51,28 @@
         return h.toString();
       }
 
-      function getReferrerFileName() {
+      function normalizePageName(name) {
+        if (!name) return null;
+        name = String(name).trim();
+
+        // get last path segment if a full path/string is passed
+        name = name.split("/").pop();
+
+        // remove query/hash
+        name = name.split("?")[0].split("#")[0];
+
+        // remove .html extension if present
+        name = name.replace(/\.html$/i, "");
+
+        return name || null;
+      }
+
+      function getReferrerPageName() {
         if (!document.referrer) return null;
 
         try {
           const refUrl = new URL(document.referrer, window.location.origin);
-          let fileName = refUrl.pathname.split("/").pop() || null;
-
-          if (!fileName) return null;
-
-          fileName = fileName.split("?")[0].split("#")[0].trim();
-          return fileName || null;
+          return normalizePageName(refUrl.pathname);
         } catch (e) {
           return null;
         }
@@ -72,61 +82,58 @@
         const password = document.getElementById("password").value.trim();
         const userHash = hash(password);
 
-        /*
-          previous page -> allowed answer hash(es) -> next page
-          users can only progress from the page they actually came from
-        */
+        // store stage names WITHOUT .html
         const adjacentPasswordMap = {
-          "introne.html": {
-            1816: "/r1p2_kx921.html",
+          introne: {
+            1816: "/r1p2_kx921",
           },
 
-          "r1p2_kx921.html": {
-            257205458: "/r2p1_zm442.html",
+          r1p2_kx921: {
+            257205458: "/r2p1_zm442",
           },
 
-          "r2p1_zm442.html": {
-            1574: "/r2p2_af812.html",
-            1605: "/r2p2_af812.html",
+          r2p1_zm442: {
+            1574: "/r2p2_af812",
+            1605: "/r2p2_af812",
           },
 
-          "r2p2_af812.html": {
-            294056: "/r3p1_mq654.html",
-            52: "/r3p1_mq654.html",
+          r2p2_af812: {
+            294056: "/r3p1_mq654",
+            52: "/r3p1_mq654",
           },
 
-          "r3p1_mq654.html": {
-            1692: "/r3p3_nio48.html",
+          r3p1_mq654: {
+            1692: "/r3p3_nio48",
           },
 
-          "r3p3_nio48.html": {
-            91451443: "/r3p4_svkno.html",
+          r3p3_nio48: {
+            91451443: "/r3p4_svkno",
           },
 
-          "r3p4_svkno.html": {
-            1791948915: "/final_da0su.html",
+          r3p4_svkno: {
+            1791948915: "/final_da0su",
           },
 
-          "final_da0su.html": {
-            52722: "/82123.html",
+          final_da0su: {
+            52722: "/82123",
           },
         };
 
-        const previousFile = getReferrerFileName();
+        const previousPage = getReferrerPageName();
 
-        if (!previousFile) {
+        if (!previousPage) {
           alert(
             "Could not verify previous page. Please go through the challenge normally.",
           );
           return;
         }
 
-        const allowedAnswers = adjacentPasswordMap[previousFile];
+        const allowedAnswers = adjacentPasswordMap[previousPage];
 
         if (!allowedAnswers) {
           alert(
             "This page cannot determine the correct previous stage. Previous page detected: " +
-              previousFile,
+              previousPage,
           );
           return;
         }
