@@ -40,25 +40,29 @@
 
     <script>
       function hash(string) {
-        string = string.toString();
-        let hash = 0;
-        if (string.length === 0) return hash;
+        string = String(string);
+        let h = 0;
+        if (string.length === 0) return "0";
 
         for (let i = 0; i < string.length; i++) {
           const char = string.charCodeAt(i);
-          hash = (hash << 5) - hash + char;
-          hash = hash & hash;
+          h = (h << 5) - h + char;
+          h = h & h;
         }
-        return hash.toString();
+        return h.toString();
       }
 
       function getReferrerFileName() {
         if (!document.referrer) return null;
 
         try {
-          const refUrl = new URL(document.referrer);
-          const pathParts = refUrl.pathname.split("/");
-          return pathParts[pathParts.length - 1] || null;
+          const refUrl = new URL(document.referrer, window.location.origin);
+          let fileName = refUrl.pathname.split("/").pop() || null;
+
+          if (!fileName) return null;
+
+          fileName = fileName.split("?")[0].split("#")[0].trim();
+          return fileName || null;
         } catch (e) {
           return null;
         }
@@ -69,8 +73,8 @@
         const userHash = hash(password);
 
         /*
-          Map the PREVIOUS page -> allowed answers for THIS password page.
-          Only hashes listed under that previous page are accepted.
+          previous page -> allowed answer hash(es) -> next page
+          users can only progress from the page they actually came from
         */
         const adjacentPasswordMap = {
           "introne.html": {
@@ -78,7 +82,7 @@
           },
 
           "r1p2_kx921.html": {
-            257205458: atob("cjJwaV96bTQ0Mi5odG1s"),
+            257205458: "r2p1_zm442.html",
           },
 
           "r2p1_zm442.html": {
@@ -112,7 +116,7 @@
 
         if (!previousFile) {
           alert(
-            "Could not verify previous page. Please navigate through the challenge normally.",
+            "Could not verify previous page. Please go through the challenge normally.",
           );
           return;
         }
@@ -120,16 +124,27 @@
         const allowedAnswers = adjacentPasswordMap[previousFile];
 
         if (!allowedAnswers) {
-          alert("This page cannot determine the correct previous stage.");
+          alert(
+            "This page cannot determine the correct previous stage. Previous page detected: " +
+              previousFile,
+          );
           return;
         }
 
-        if (userHash in allowedAnswers) {
+        if (Object.prototype.hasOwnProperty.call(allowedAnswers, userHash)) {
           window.location.href = allowedAnswers[userHash];
         } else {
           alert("Incorrect password!");
         }
       }
+
+      document
+        .getElementById("password")
+        .addEventListener("keydown", function (e) {
+          if (e.key === "Enter") {
+            submitPassword();
+          }
+        });
     </script>
   </body>
 </html>
